@@ -25,7 +25,7 @@ To run the information retrieval system, follow these steps:
  Boolean queries can be constructed using AND, OR, and NOT operations. Simply enter your query in the provided text box and click the "Process Query" button to retrieve relevant documents.
 
  ### Proximity Queries
- Proximity queries allow users to find terms within a specified distance of each other. Enter your query in the format <term1> <term2> /distance and click "Process Query" to retrieve relevant documents.
+ Proximity queries allow users to find terms within a specified distance of each other. Enter your query in the format 'term1 term2 /distance' and click "Process Query" to retrieve relevant documents.
 
 ## License
  This project is licensed under the MIT License - see the LICENSE file for details.
