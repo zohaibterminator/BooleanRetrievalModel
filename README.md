@@ -26,3 +26,10 @@ To run the information retrieval system, follow these steps:
 
  ### Proximity Queries
  Proximity queries allow users to find terms within a specified distance of each other. Enter your query in the format <term1> <term2> /distance and click "Process Query" to retrieve relevant documents.
+
+## License
+ This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+* This project was inspired by information retrieval concepts and algorithms.
+* Special thanks to the developers of NLTK for providing essential natural language processing tools.
