@@ -14,7 +14,7 @@ To run the information retrieval system, follow these steps:
 * Install NLTK, tkinter and customtkinter library using pip install NLTK etc.
 * Make sure Stopword-List.txt and the Research Paper directory containing all the documents is in your current working directory.
 * Run the files in an IDE.
-* Run this command to download the tokennizer nltk.download('punkt')
+* Run this command to download the tokennizer: nltk.download('punkt')
 * Run the index_creation.py script first using python index_creation.py to create and save the indexes.
 * Then run the query_processing.py using python query_processing.py for queries.
 * Use the tkinter GUI interface to input queries and press 'Process Query' button to retrieve the required document IDs.
