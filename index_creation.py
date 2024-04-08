@@ -61,7 +61,7 @@ def create_positional_index(total_tokens):
 
     for i, tokens in enumerate(total_tokens): # loop through each token in total_tokens, and then loop through each word in the token
         for j, word in enumerate(tokens):
-            if word not in stopwords: # filter the stopwords
+            if word not in stopwords and len(word) <= 45: # filter the stopwords
                 word = porter_stemmer.stem(word) # Stem the word
                 if word[-1] == "'": # if the word ends with an apostrophe, remove it
                     word = word.rstrip("'")
@@ -72,6 +72,7 @@ def create_positional_index(total_tokens):
                         terms[word][doc[i]] = [j]
                 else: # add the word in the index along with the docID and the position
                     terms[word] = {doc[i]: [j]}
+    print("Positional Index created")
     return terms
 
 def create_inverted_index(total_tokens):
@@ -91,7 +92,7 @@ def create_inverted_index(total_tokens):
     doc = get_docIDs() # get the docIDs
 
     for i, tokens in enumerate(total_tokens): # loop through each token in total_tokens and remove the stopwords
-        total_tokens[i] = [c for c in tokens if c not in stopwords]
+        total_tokens[i] = [c for c in tokens if c not in stopwords and len(c) <= 45]
 
     for i, tokens in enumerate(total_tokens): # loop through each token in total_tokens again
         for word in tokens: # loop through each word in tokens
@@ -103,6 +104,7 @@ def create_inverted_index(total_tokens):
                     terms[word].append(doc[i])
             else: # add the word along with the docID
                 terms[word] = [doc[i]]
+    print("Inverted Index created")
     return terms    
 
 def preprocessing():
@@ -143,6 +145,7 @@ def preprocessing():
             j += 1 # move the index forward
         tokens = [c for c in tokens if c.isalpha()] # filter out any strings that contain symbols, numbers, etc.
         total_tokens.append(tokens) # add the processed tokens as a seperate list. Did this to keep track of which tokens appear in which docs (needed to construct indexes). List at index 0 indicate tokens found in doc 1 and so on.
+    print("Preprocessing done")
     return total_tokens
 
 def save_indexes():
@@ -166,6 +169,7 @@ def save_indexes():
             for i in value:
                 f.write('{} '.format(i))
             f.write('\n')
+    print("Inverted Index saved")
     with open('positional_index.txt', 'w') as f: # do the same for positional index
         for key, value in positional_index.items():
             for k, v in value.items():
@@ -173,6 +177,7 @@ def save_indexes():
                 for i in v:
                     f.write('{} '.format(i))
                 f.write('\n')
+    print("Positional Index saved")
 
 def main():
     if (not os.path.isfile('inverted_index.txt') and not os.path.isfile('positional_index,txt')): # check if the indexes already exist, if they don't, call the save_indexes function
