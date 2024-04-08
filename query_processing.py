@@ -213,7 +213,7 @@ def ProxQueryProcessing(query):
         if word[-1] == "'": # remove the apostrophe
                 word = word.rstrip("'")
         query[0] = word
-    
+
     if query[1] not in stopwords: # if the word is not a stopword, stem it
         word = porter_stemmer.stem(query[1].lower()) # stem the second word in the query
         if word[-1] == "'": # remove the apostrophe
@@ -225,7 +225,7 @@ def ProxQueryProcessing(query):
         docs.append(inverted_index[query[0]]) # get the postings list for the first term
     else:
         docs.append([])
-    
+
     if query[1] not in stopwords:
         docs.append(inverted_index[query[1]]) # get the postings list for the second term
     else:
@@ -273,28 +273,108 @@ def process_query():
     output_label.configure(state='normal') # enable the output label
     output_label.delete(0, tk.END) # clear the output label
     output_label.insert(0, result) # insert the result into the output label
-    output_label.configure(state=tk.DISABLED) # again disable the output label
+    output_label.configure(state='readonly') # again disable the output label
 
 ctk.set_appearance_mode('Dark') # set the appearance mode to dark
 ctk.set_default_color_theme('dark-blue') # set the default color theme
 
 root = ctk.CTk() # create a new window
 root.geometry('500x400') # set the window size
+root.title('Boolean Retrieval Model') # set the window title
 
-root.title('Boolean Query Model') # set the window title
-label1 = ctk.CTkLabel(root, text="Boolean Query Model", font=("Verdana", 20), fg_color="transparent") # create a label "Boolean Query Model" with a font size of 20 and transparent foreground color
-label1.place(relx=0.5, rely=0.2, anchor=tk.CENTER) # place the label according to the given co-ordinated relative to x and y axis
-label2 = ctk.CTkLabel(root, text="Enter Query", fg_color="transparent") # create another label "Enter Query" with a transparent foreground color
-label2.place(relx=0.5, rely=0.3, anchor=tk.CENTER) # place the at the center of the window
-entry = ctk.CTkEntry(root, width=200, bg_color='black') # create a text entry field with a width of 200 and a black background color
-entry.place(relx=0.5, rely=0.4, anchor=tk.CENTER) # place the text entry field in the window
-process_button = ctk.CTkButton(root, text="Process Query", font=("Helvetica", 12), bg_color='white', fg_color="#B6C8A9", hover_color="white", text_color = "black", command=process_query) # create a button "Process Query" with a font size of 12 and white background color and black text color. The button calls the process_query function when clicked
-process_button.place(relx=0.5, rely=0.5, anchor=tk.CENTER) # place the button in the window
-exit_button = ctk.CTkButton(root, text="Exit", font=("Helvetica", 12), bg_color='white', fg_color="#B6C8A9", hover_color="white", text_color = "black", command=root.destroy) # create a button "Exit" with a font size of 12 with white background color and black text color. The button terminates the window when clicked
-exit_button.place(relx=0.5, rely=0.6, anchor=tk.CENTER) # place the button in the window
-output_label = ctk.CTkEntry(root, width=400, height=50, bg_color='black') # create a text entry field with a width of 400, a height of 50, and a black background color
-output_label.place(relx=0.5, rely=0.8, anchor=tk.CENTER) # place the text entry field in the window
-output_label.configure(state='readonly') # set the state of the text entry field to readonly (disable it)
+# create a label "Boolean Query Model" with a font size of 20 and transparent foreground color
+label1 = ctk.CTkLabel(
+    root,
+    text="Boolean Query Model",
+    font=("Verdana", 20),
+    fg_color="transparent"
+)
+# place the label according to the given co-ordinated relative to x and y axis
+label1.place(
+    relx=0.5,
+    rely=0.2,
+    anchor=tk.CENTER
+)
+
+# create another label "Enter Query" with a transparent foreground color
+label2 = ctk.CTkLabel(
+    root,
+    text="Enter Query",
+    fg_color="transparent"
+)
+# place the at the center of the window
+label2.place( 
+    relx=0.5,
+    rely=0.3,
+    anchor=tk.CENTER
+)
+
+# create a text entry field with a width of 200 and a black background color
+entry = ctk.CTkEntry(
+    root,
+    width=200,
+    bg_color='black'
+)
+# place the text entry field in the window
+entry.place(
+    relx=0.5,
+    rely=0.4,
+    anchor=tk.CENTER
+)
+
+# create a button "Process Query" with a font size of 12 and white background color and black text color. The button calls the process_query function when clicked
+process_button = ctk.CTkButton(
+    root,
+    text="Process Query",
+    font=("Helvetica", 12),
+    bg_color='white',
+    fg_color="#B6C8A9",
+    hover_color="white",
+    text_color = "black",
+    command=process_query
+)
+# place the button in the window
+process_button.place(
+    relx=0.5,
+    rely=0.5,
+    anchor=tk.CENTER
+)
+
+# create a button "Exit" with a font size of 12 with white background color and black text color. The button terminates the window when clicked
+exit_button = ctk.CTkButton(
+    root,
+    text="Exit",
+    font=("Helvetica", 12),
+    bg_color='white',
+    fg_color="#B6C8A9",
+    hover_color="white",
+    text_color = "black",
+    command=root.destroy
+)
+# place the button in the window
+exit_button.place(
+    relx=0.5,
+    rely=0.6,
+    anchor=tk.CENTER
+)
+
+# create a text entry field with a width of 400, a height of 50, and a black background color
+output_label = ctk.CTkEntry(
+    root,
+    width=400,
+    height=50,
+    bg_color='black'
+)
+# place the text entry field in the window
+output_label.place(
+    relx=0.5,
+    rely=0.8,
+    anchor=tk.CENTER
+)
+# set the state of the text entry field to readonly (disable it)
+output_label.configure(
+    state='readonly'
+)
 
 
 if __name__ == "__main__":
