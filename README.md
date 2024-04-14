@@ -33,3 +33,4 @@ To run the information retrieval system, follow these steps:
 ## Acknowledgments
 * This project was inspired by information retrieval concepts and algorithms.
 * Special thanks to the developers of NLTK for providing essential natural language processing tools.
+* Special thanks to Tom Schimansky for developing CustomTkinter that was used for making the GUI.
